@@ -11,13 +11,16 @@ from flask import request           #facilitate form submission
 from random import *
 import os
 import sqlite3
+
+db_file = "tada.db"
 #the conventional way:
 #from flask import Flask, render_template, request
 
 from flask import session
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
-c= db.cursor()
+userpass = sqlite3.connect(db_file)
+c= userpass.cursor()
 command = "CREATE TABLE userpass(username TEXT, password TEXT);" #creates Database
 c.execute(command)    # run SQL statement
 
@@ -28,23 +31,18 @@ def disp_loginpage():
     # print(request.args['username'])
     # print("***DIAG: request.args['password']  ***")
     # print(request.args['password'])
-     if ("username" != None):
-        return render_template( 'response.html', username=session.get("username"))
-     return render_template( 'login.html' )
-
-@app.route("/signup")
-def signup():
+#      if ("username" != None):username"))
+#      return render_template( 'login.html' )
+#
+# @app.route("/signup")
+# def signup():
     username= request.args['username']
     password= request.args['password']
     for row in c.execute("SELECT username from userpass;"):
         if(row != username):
             c.execute('INSERT INTo userpass VALUES (username, password);')
         else:
-            
-
-    command = 'INSERT INTO courses VALUES (?, ?, ?);'
-    params = (row['code'], row['mark'], row['id'])
-    c.execute(command, params)
+            return render_template('login.html', error="username already exists")
 @app.route("/auth") # , methods=['GET', 'POST'])
 def authenticate():
     # print("\n\n\n")
