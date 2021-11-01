@@ -1,2 +1,5 @@
 group -- 2021-10-28\n 
 clarified database for blogs
+
+group -- 2021-10-29\n
+created a working app: login/response page
