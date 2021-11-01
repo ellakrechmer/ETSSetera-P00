@@ -10,13 +10,16 @@ from flask import request           #facilitate form submission
 
 from random import *
 import os
-
+import sqlite3
 #the conventional way:
 #from flask import Flask, render_template, request
 
 from flask import session
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
+c= db.cursor()
+command = "CREATE TABLE userpass(username TEXT, password TEXT);" #creates Database
+c.execute(command)    # run SQL statement
 
 @app.route("/") #, methods=['GET', 'POST'])
 def disp_loginpage():
@@ -29,7 +32,19 @@ def disp_loginpage():
         return render_template( 'response.html', username=session.get("username"))
      return render_template( 'login.html' )
 
+@app.route("/signup")
+def signup():
+    username= request.args['username']
+    password= request.args['password']
+    for row in c.execute("SELECT username from userpass;"):
+        if(row != username):
+            c.execute('INSERT INTo userpass VALUES (username, password);')
+        else:
+            
 
+    command = 'INSERT INTO courses VALUES (?, ?, ?);'
+    params = (row['code'], row['mark'], row['id'])
+    c.execute(command, params)
 @app.route("/auth") # , methods=['GET', 'POST'])
 def authenticate():
     # print("\n\n\n")
