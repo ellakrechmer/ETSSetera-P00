@@ -3,3 +3,6 @@ clarified database for blogs
 
 group -- 2021-10-29\n
 created a working app: login/response page
+
+group -- 2021-11-01\n
+worked on making a sign up page; adding new user and pass to database unless they already exist
