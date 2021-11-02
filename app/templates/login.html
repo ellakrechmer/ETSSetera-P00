@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <!--
-     set: Shyne Choi, Ella Krechmer, Tina Nguyen
-     SoftDev
-     K15: Session Greetings
-     2021-10-18
+    ETSSetera: Shyne Choi, Ella Krechmer, Tina Nguyen, Sean Ging
+    SoftDev
+    P00
  -->
 
 
@@ -19,21 +18,23 @@
     </h1>
 
     <h2>
-      Setting the Bar: Shyne Choi, Ella Krechmer, Tina Nguyen
+      ETSSetera: Shyne Choi, Ella Krechmer, Tina Nguyen, Sean Ging
     </h2
     <h3>
-      Enter your username and password.
+      Enter a username and password.
     </h3>
-    <p style="color:red">{{error}}</p>
-    <form action="/auth">
+    <p style="color:red">{{syntaxerror}}</p>
+    <form action="/signup">
       <h4>Username: </h4>
       <input type="text" name="username">
       <br>
       <h4>Password: </h4>
       <input type="password" name="password">
+      <h4>Confirm Password: </h4>
+      <input type="password" name="passauth">
+      <p style="color: red">{{passerror}}</p>
       <br>
-      <br>
-      <input type="submit" name="sub1">
+      <input type="submit" name="sub1" value="Sign Up">
     </form>
     <br>
   </body>

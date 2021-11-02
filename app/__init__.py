@@ -1,7 +1,6 @@
-# Setting the Bar: Shyne Choi, Ella Krechmer, Tina Nguyen
+# ETSSetera: Shyne Choi, Ella Krechmer, Tina Nguyen, Sean Ging
 # SoftDev
-# K15:Sessions Greetings
-# 2021-10-18
+# P00
 
 from flask import Flask             #facilitate flask webserving
 from flask import render_template   #facilitate jinja templating
@@ -21,8 +20,8 @@ app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
 userpass = sqlite3.connect(db_file)
 c= userpass.cursor()
-command = "CREATE TABLE userpass(username TEXT, password TEXT);" #creates Database
-c.execute(command)    # run SQL statement
+c.execute("DROP TABLE IF EXISTS userpass")
+c.execute("CREATE TABLE userpass(username TEXT, password TEXT);" )
 
 @app.route("/") #, methods=['GET', 'POST'])
 def disp_loginpage():
@@ -31,59 +30,29 @@ def disp_loginpage():
     # print(request.args['username'])
     # print("***DIAG: request.args['password']  ***")
     # print(request.args['password'])
-#      if ("username" != None):username"))
-#      return render_template( 'login.html' )
-#
-# @app.route("/signup")
-# def signup():
+    if ("username" != None):
+        return render_template( 'login.html' )
+
+@app.route("/signup")
+def signup():
     username= request.args['username']
     password= request.args['password']
-    for row in c.execute("SELECT username from userpass;"):
-        if(row != username):
-            c.execute('INSERT INTo userpass VALUES (username, password);')
-        else:
-            return render_template('login.html', error="username already exists")
-@app.route("/auth") # , methods=['GET', 'POST'])
-def authenticate():
-    # print("\n\n\n")
-    # print("***DIAG: this Flask obj ***")
-    # print(app)
-    # print("***DIAG: request obj ***")
-    # print(request)
-    # print("***DIAG: request.args ***")
-    # print(request.args)
+    passauth= request.args['passauth']
+    # c.execute('INSERT INTO userpass VALUES(username, password);')
+    # c.execute("SELECT username from userpass;")
+    # for row in c.execute("SELECT username from userpass;"):
+    #     if(row != username):
+    #         c.execute('INSERT INTO userpass VALUES (username, password);')
+    #         return render_template('response.html')
+    #     else:
+    #         return render_template('login.html', error="username already exists")
 
-    #prints username and headers in the terminal
-    print("***DIAG: request.args['username']  ***")
-    print(request.args['username'])
-    print("***DIAG: request.headers ***")
-    print(request.headers)
-
-
-    myuser="settingthebar"
-    mypass="intertoobz"
-
-    #authenicate will go to the response page which will use response.html
-    #we are retrieving entered username and password here
-    username=request.args['username']
-    password=request.args['password']
-    #(username==myuser and password==mypass)
-    # if (username!=myuser or password!=mypass):
-    #     raise Exception("wrong login")
-    # try:
-    #     return render_template( 'response.html', username=request.args['username'], password=request.args['password'])  #response to a form submission
-    # except if ((username!=myuser or password!=mypass)):
-    #     return render_template( 'login.html' )
-    #app.config['secret_key'] = os.urandom(32)
-    if (username==myuser and password==mypass):
-        session["username"] = username
-        return render_template( 'response.html', username = session["username"])
-    elif (username=="" or password==""):
-        return render_template('login.html', error="Cannot submit blank username or password")
-    elif (username!=myuser):
-        return render_template('login.html', error="Incorrect username")
-    elif (password!=mypass):
-        return render_template('login.html', error="Incorrect password")
+    if (username=="" or password==""):
+        return render_template('login.html', syntaxerror="Cannot submit blank username or password")
+    elif (password!=passauth):
+        return render_template('login.html', passerror="Passwords must match")
+    else:
+        return render_template('response.html', username=username)
 
 @app.route("/logout")
 def logout():
