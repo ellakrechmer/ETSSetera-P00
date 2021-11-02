@@ -18,7 +18,7 @@ db_file = "tada.db"
 from flask import session
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
-userpass = sqlite3.connect(db_file)
+userpass = sqlite3.connect(db_file, check_same_thread=False)
 c= userpass.cursor()
 c.execute("DROP TABLE IF EXISTS userpass")
 c.execute("CREATE TABLE userpass(username TEXT, password TEXT);" )
@@ -38,7 +38,8 @@ def signup():
     username= request.args['username']
     password= request.args['password']
     passauth= request.args['passauth']
-    # c.execute('INSERT INTO userpass VALUES(username, password);')
+    command=f"""INSERT INTO userpass VALUES("{username}", "{password}");"""
+    c.execute(command)
     # c.execute("SELECT username from userpass;")
     # for row in c.execute("SELECT username from userpass;"):
     #     if(row != username):
