@@ -11,6 +11,7 @@ from random import *
 import os
 import sqlite3
 
+
 db_file = "tada.db"
 #the conventional way:
 #from flask import Flask, render_template, request
@@ -53,6 +54,7 @@ def signup():
     elif (password!=passauth):
         return render_template('login.html', passerror="Passwords must match")
     else:
+        #session["username"]=username
         return render_template('response.html', username=username)
 
 @app.route("/logout")
