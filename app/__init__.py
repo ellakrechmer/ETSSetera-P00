@@ -1,4 +1,4 @@
-# ETSSetera: Shyne Choi, Ella Krechmer, Tina Nguyen, Sean Ging
+# ETSSetera: Shyne Choi, Ella Krechmer, Tina Nguyen, Sean+Patrick Ging
 # SoftDev
 # P00
 
