@@ -9,3 +9,6 @@ worked on making a sign up page; adding new user and pass to database unless the
 
 ellaK -- 2021-11-02\4:45-6:00 PM
 made a working sign up page; not sure if it inserts it into table (will check) but doesn't crash anymore
+
+tinaN -- 2021-11-03\7:10-7:53 PM
+imported redirect and made the welcome page's route "/loggedin". login info will no longer be shown in the URL in the welcome page. when logged out, user will be directed to the "/" route.
