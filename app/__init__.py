@@ -5,7 +5,7 @@
 from flask import Flask             #facilitate flask webserving
 from flask import render_template   #facilitate jinja templating
 from flask import request           #facilitate form submission
-
+from flask import redirect          #facilitate URL redirecting
 
 from random import *
 import os
@@ -20,8 +20,7 @@ app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
 userpass = sqlite3.connect(db_file, check_same_thread=False)
 c= userpass.cursor()
-c.execute("CREATE TABLE IF NOT EXISTS userpass(username TEXT, password TEXT);" )
-
+c.execute("CREATE TABLE IF NOT EXISTS userpass(username TEXT, password TEXT);")
 
 @app.route("/") #, methods=['GET', 'POST'])
 def disp_loginpage():
@@ -44,7 +43,6 @@ def signup():
     command=f"INSERT INTO userpass VALUES(\"{username}\", \"{password}\");"
     c.execute(command)
     userpass.commit()
-
     # c.execute("SELECT username from userpass;")
     # for row in c.execute("SELECT username from userpass;"):
     #     if(row != username):
@@ -59,13 +57,19 @@ def signup():
         return render_template('login.html', passerror="Passwords must match")
     else:
         session["username"] = username
-        return render_template( 'response.html', username = session["username"])
+        return redirect('/loggedin') # redirects to /loggedin
+
+@app.route("/loggedin")
+def loggedin(): # does not show info in URL, shows /loggedin instead
+    return render_template( 'response.html', username=session.get("username"))
+
+
 @app.route("/logout")
 def logout():
     #if "username" in session:
     session["username"] = None
     session.pop("username", None)
-    return render_template('login.html')
+    return redirect('/')
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified
