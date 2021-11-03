@@ -30,6 +30,9 @@ def disp_loginpage():
     # print(request.args['username'])
     # print("***DIAG: request.args['password']  ***")
     # print(request.args['password'])
+    if (session.get("username") != None):
+        # if there's an existing session, shows welcome page
+       return render_template( 'response.html', username=session.get("username"))
     if ("username" != None):
         return render_template( 'login.html' )
 
@@ -53,8 +56,8 @@ def signup():
     elif (password!=passauth):
         return render_template('login.html', passerror="Passwords must match")
     else:
-        return render_template('response.html', username=username)
-
+        session["username"] = username
+        return render_template( 'response.html', username = session["username"])
 @app.route("/logout")
 def logout():
     #if "username" in session:
