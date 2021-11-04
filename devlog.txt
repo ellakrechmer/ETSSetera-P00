@@ -12,3 +12,6 @@ made a working sign up page; not sure if it inserts it into table (will check) b
 
 tinaN -- 2021-11-03\7:10-7:53 PM
 imported redirect and made the welcome page's route "/loggedin". login info will no longer be shown in the URL in the welcome page. when logged out, user will be directed to the "/" route.
+
+tinaN, shyneC -- 2021-11-04\8:17 AM
+design doc updated with database organization structure - combined table
