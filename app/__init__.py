@@ -6,21 +6,26 @@ from flask import Flask             #facilitate flask webserving
 from flask import render_template   #facilitate jinja templating
 from flask import request           #facilitate form submission
 from flask import redirect          #facilitate URL redirecting
+from flask import session
 
 from random import *
 import os
 import sqlite3
 
+from database import UsernamePasswordTable #import our class
+
+
 db_file = "tada.db"
 #the conventional way:
 #from flask import Flask, render_template, request
 
-from flask import session
 app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
-userpass = sqlite3.connect(db_file, check_same_thread=False)
-c= userpass.cursor()
-c.execute("CREATE TABLE IF NOT EXISTS userpass(username TEXT, password TEXT);")
+
+userpass = UsernamePasswordTable(db_file, "userpass")
+# sqlite3.connect(db_file, check_same_thread=False)
+# c= userpass.cursor()
+# c.execute("CREATE TABLE IF NOT EXISTS userpass(username TEXT, password TEXT);")
 
 @app.route("/") #, methods=['GET', 'POST'])
 def disp_loginpage():
@@ -29,7 +34,7 @@ def disp_loginpage():
     # print(request.args['username'])
     # print("***DIAG: request.args['password']  ***")
     # print(request.args['password'])
-    if (session.get("username") != None):
+    if (session.get("username") is not None):
         # if there's an existing session, shows welcome page
        return render_template( 'response.html', username=session.get("username"))
     if ("username" != None):
@@ -40,9 +45,7 @@ def signup():
     username= request.args['username']
     password= request.args['password']
     passauth= request.args['passauth']
-    command=f"INSERT INTO userpass VALUES(\"{username}\", \"{password}\");"
-    c.execute(command)
-    userpass.commit()
+    userpass.insert(username, password) # committing actions to database must be done every time you commit a command 
     # c.execute("SELECT username from userpass;")
     # for row in c.execute("SELECT username from userpass;"):
     #     if(row != username):
@@ -58,6 +61,8 @@ def signup():
     else:
         session["username"] = username
         return redirect('/loggedin') # redirects to /loggedin
+
+
 
 @app.route("/loggedin")
 def loggedin(): # does not show info in URL, shows /loggedin instead
