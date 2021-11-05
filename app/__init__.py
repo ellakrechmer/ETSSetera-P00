@@ -40,6 +40,17 @@ def disp_loginpage():
     if ("username" != None):
         return render_template( 'login.html' )
 
+@app.route("/login")
+def login():
+    username= request.args['username']
+    password= request.args['password']
+
+    if (username=="" or password==""):
+        return render_template('login.html', syntaxerror="Cannot submit blank username or password")
+    else:
+        session["username"] = username
+        return redirect('/loggedin')
+
 @app.route("/signup")
 def signup():
     username= request.args['username']
@@ -48,7 +59,7 @@ def signup():
     try:
         userpass.insert(username, password) # committing actions to database must be done every time you commit a command
     except:
-        return render_template('login.html', syntaxerror = "this username already exists")
+        return render_template('signup.html', syntaxerror = "this username already exists")
     # c.execute("SELECT username from userpass;")
     # for row in c.execute("SELECT username from userpass;"):
     #     if(row != username):
@@ -58,9 +69,9 @@ def signup():
     #         return render_template('login.html', error="username already exists")
 
     if (username=="" or password==""):
-        return render_template('login.html', syntaxerror="Cannot submit blank username or password")
+        return render_template('signup.html', syntaxerror="Cannot submit blank username or password")
     elif (password!=passauth):
-        return render_template('login.html', passerror="Passwords must match")
+        return render_template('signup.html', passerror="Passwords must match")
     else:
         session["username"] = username
         return redirect('/loggedin') # redirects to /loggedin

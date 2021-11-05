@@ -13,14 +13,14 @@ class UsernamePasswordTable:
 
 		Just wanted to make interacting w tables easier
 
-		DB design:	
+		DB design:
 			username TEXT
 			password TEXT
 
 	'''
 	def __init__ (self,fileName, name):
 		'''
-		__init__ 
+		__init__
 		Args
 		    filename: database file name
 			name: name of table
@@ -29,13 +29,13 @@ class UsernamePasswordTable:
 
 
 		Class attributes
-			self._db : the file our database comes from. uses fileName Check_same_thread 
+			self._db : the file our database comes from. uses fileName Check_same_thread
 			was set to false, if you want us to change it, let us know. PRIVATE,
 			do not use.
 
 			self._cursor is the cursor for that database. PRIVATE, do not use.
 
-			self._name is the name of the table, used to aid in writing methods for 
+			self._name is the name of the table, used to aid in writing methods for
 			this class; private, do not use!
 
 		'''
@@ -46,9 +46,9 @@ class UsernamePasswordTable:
 
 	def insert(self,username, password):
 		'''
-		insert 
+		insert
 
-		insert username and password. DOES NOT CHECK if it is duplicate. 
+		insert username and password. DOES NOT CHECK if it is duplicate.
 		will throw error if duplicate! please use userExists method below!
 		returns nothing
 
@@ -56,7 +56,7 @@ class UsernamePasswordTable:
 			username : username
 			password : password
 
-		Returns 
+		Returns
 			Nothing
 
 		'''
@@ -67,7 +67,7 @@ class UsernamePasswordTable:
 
 	def userExists(self,username):
 		'''
-		userExists 
+		userExists
 
 		Will return true if user name exists in table will throw false otherwise.
 
@@ -76,7 +76,7 @@ class UsernamePasswordTable:
 
 		Returns
 			boolean t/f
-		
+
 		'''
 		#executing query
 		self._cursor.execute(f"SELECT * FROM {self._name} where username=\"{username}\";")
@@ -88,7 +88,7 @@ class UsernamePasswordTable:
 
 	def passMatch(self,username, password):
 		'''
-		passMatch 
+		passMatch
 
 		Will return true if user name and pass exists in table will throw false otherwise.
 
@@ -98,7 +98,7 @@ class UsernamePasswordTable:
 
 		Returns
 			boolean t/f
-		
+
 		'''
 		#executing query
 		self._cursor.execute(f"SELECT * FROM {self._name} where username=\"{username}\" and password=\"{password}\";")
@@ -111,12 +111,12 @@ class UsernamePasswordTable:
 
 
 '''
-Database testing code 
+Database testing code
 
-This is mostly for my purposes only we can delete it when we're 
-Deploying the app 
+This is mostly for my purposes only we can delete it when we're
+Deploying the app
 
-Thanks Patrick and Sean 
+Thanks Patrick and Sean
 
 from database import UsernamePasswordTable
 
@@ -142,5 +142,3 @@ print(userpass.passMatch("user", "pass"))
 print(" should print false")
 print(userpass.passMatch("user", "passs"))
 '''
-
-
