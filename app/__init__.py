@@ -56,9 +56,9 @@ def signup():
     username= request.args['username']
     password= request.args['password']
     passauth= request.args['passauth']
-    try:
+    if not userpass.userExists(username):
         userpass.insert(username, password) # committing actions to database must be done every time you commit a command
-    except:
+    else:
         return render_template('signup.html', syntaxerror = "this username already exists")
     # c.execute("SELECT username from userpass;")
     # for row in c.execute("SELECT username from userpass;"):
