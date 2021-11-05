@@ -15,3 +15,6 @@ imported redirect and made the welcome page's route "/loggedin". login info will
 
 tinaN, shyneC -- 2021-11-04\8:17 AM
 design doc updated with database organization structure - combined table
+
+seanG, patrickG -- 2021-11-04\10:00pm
+create class for database, which makes code much simpler, readable, and debuggable (if need be). 
