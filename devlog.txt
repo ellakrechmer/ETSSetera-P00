@@ -17,4 +17,7 @@ tinaN, shyneC -- 2021-11-04\8:17
 design doc updated with database organization structure - combined table
 
 seanG, patrickG -- 2021-11-04\22:00
-create class for database, which makes code much simpler, readable, and debuggable (if need be). 
+create class for database, which makes code much simpler, readable, and debuggable (if need be).
+
+ellaK -- 2021--11-06\21:55
+fixed link from login page to signup; now, you can successfully sign up and go to the response page

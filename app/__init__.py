@@ -51,6 +51,19 @@ def login():
         session["username"] = username
         return redirect('/loggedin')
 
+@app.route("/signupdisplay")
+def disp_signuppage():
+    # print("\n\n\n")
+    # print("***DIAG: request.args['username']  ***")
+    # print(request.args['username'])
+    # print("***DIAG: request.args['password']  ***")
+    # print(request.args['password'])
+    if (session.get("username") is not None):
+        # if there's an existing session, shows welcome page
+       return render_template( 'response.html', username=session.get("username"))
+    if ("username" != None):
+        return render_template( 'signup.html' )
+
 @app.route("/signup")
 def signup():
     username= request.args['username']
@@ -58,6 +71,8 @@ def signup():
     passauth= request.args['passauth']
     if not userpass.userExists(username):
         userpass.insert(username, password) # committing actions to database must be done every time you commit a command
+        session["username"]=username
+        return redirect('/loggedin')
     else:
         return render_template('signup.html', syntaxerror = "this username already exists")
     # c.execute("SELECT username from userpass;")
