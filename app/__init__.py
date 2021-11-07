@@ -32,6 +32,10 @@ def disp_loginpage():
     if ("username" != None):
         return render_template( 'login.html' )
 
+@app.route("/create")
+def create():
+    return render_template('create.html')
+
 @app.route("/login")
 def login():
     username= request.args['username']
