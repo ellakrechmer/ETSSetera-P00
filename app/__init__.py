@@ -23,17 +23,9 @@ app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
 
 userpass = UsernamePasswordTable(db_file, "userpass")
-# sqlite3.connect(db_file, check_same_thread=False)
-# c= userpass.cursor()
-# c.execute("CREATE TABLE IF NOT EXISTS userpass(username TEXT, password TEXT);")
 
 @app.route("/") #, methods=['GET', 'POST'])
 def disp_loginpage():
-    # print("\n\n\n")
-    # print("***DIAG: request.args['username']  ***")
-    # print(request.args['username'])
-    # print("***DIAG: request.args['password']  ***")
-    # print(request.args['password'])
     if (session.get("username") is not None):
         # if there's an existing session, shows welcome page
        return render_template( 'response.html', username=session.get("username"))
@@ -47,17 +39,16 @@ def login():
 
     if (username=="" or password==""):
         return render_template('login.html', syntaxerror="Cannot submit blank username or password")
+    elif not userpass.userExists(username):
+        return render_template('login.html', syntaxerror="Username does not exist")
+    elif not userpass.passMatch(username, password):
+        return render_template('login.html', syntaxerror = "Incorrect password")
     else:
         session["username"] = username
         return redirect('/loggedin')
 
 @app.route("/signupdisplay")
 def disp_signuppage():
-    # print("\n\n\n")
-    # print("***DIAG: request.args['username']  ***")
-    # print(request.args['username'])
-    # print("***DIAG: request.args['password']  ***")
-    # print(request.args['password'])
     if (session.get("username") is not None):
         # if there's an existing session, shows welcome page
        return render_template( 'response.html', username=session.get("username"))
@@ -69,28 +60,16 @@ def signup():
     username= request.args['username']
     password= request.args['password']
     passauth= request.args['passauth']
-    if not userpass.userExists(username):
+    if (username=="" or password==""):
+        return render_template('signup.html', syntaxerror="Cannot submit blank username or password")
+    elif not userpass.userExists(username):
         userpass.insert(username, password) # committing actions to database must be done every time you commit a command
         session["username"]=username
         return redirect('/loggedin')
-    else:
-        return render_template('signup.html', syntaxerror = "this username already exists")
-    # c.execute("SELECT username from userpass;")
-    # for row in c.execute("SELECT username from userpass;"):
-    #     if(row != username):
-    #         c.execute('INSERT INTO userpass VALUES (username, password);')
-    #         return render_template('response.html')
-    #     else:
-    #         return render_template('login.html', error="username already exists")
-
-    if (username=="" or password==""):
-        return render_template('signup.html', syntaxerror="Cannot submit blank username or password")
     elif (password!=passauth):
         return render_template('signup.html', passerror="Passwords must match")
     else:
-        session["username"] = username
-        return redirect('/loggedin') # redirects to /loggedin
-
+        return render_template('signup.html', syntaxerror = "This username already exists")
 
 
 @app.route("/loggedin")

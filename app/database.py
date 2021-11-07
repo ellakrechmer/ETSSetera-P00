@@ -101,7 +101,7 @@ class UsernamePasswordTable:
 
 		'''
 		#executing query
-		self._cursor.execute(f"SELECT * FROM {self._name} where username=\"{username}\" and password=\"{password}\";")
+		self._cursor.execute(f"SELECT * FROM {self._name} where username=\"{username}\" AND password=\"{password}\";")
 
 		if self._cursor.fetchone() is not None: #if there was an entry returned
 			return True #meaning we had a match

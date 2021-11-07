@@ -20,4 +20,8 @@ seanG, patrickG -- 2021-11-04\22:00
 create class for database, which makes code much simpler, readable, and debuggable (if need be).
 
 ellaK -- 2021--11-06\21:55
-fixed link from login page to signup; now, you can successfully sign up and go to the response page
+-fixed link from login page to signup; now, you can successfully sign up and go to the response page
+-fixed login so that it goes to \login instead of \signup (mistake from classwork testing)
+-fixed signup so that confirming password works properly
+-made login successfully check for existing username+password combinations and only login if both are correct
+[long story short: login and signup are working now!!]
