@@ -5,8 +5,8 @@ def main():
 
 	db = BlogTable("dbtest.db", "test")
 
-	db.insert("sging04", "Vivamus integer nom", "nom")
-	db.insert("sean", "Vivamus sucipit taciti", "vivamus")
+	db.insert("sging04", "t1","Vivamus integer nom", "nom")
+	db.insert("sean", "t2","Vivamus sucipit taciti", "vivamus")
 	ret = db.getEntryById(1)
 	print(ret)
 	print(db.searchByKeyWord("vivamus", 1))

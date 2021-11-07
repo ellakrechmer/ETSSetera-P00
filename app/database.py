@@ -135,9 +135,9 @@ class BlogTable:
 		self._db = sqlite3.connect(fileName, check_same_thread=False)
 		self._cursor = self._db.cursor()
 		self._name = name
-		self._cursor.execute(f"CREATE VIRTUAL TABLE IF NOT EXISTS {self._name} USING fts4( username TEXT,  blog TEXT NOT NULL, keywords TEXT NOT NULL) ;")
+		self._cursor.execute(f"CREATE VIRTUAL TABLE IF NOT EXISTS {self._name} USING fts4( username TEXT, title TEXT NOT NULL,  blog TEXT NOT NULL, keywords TEXT NOT NULL) ;")
 
-	def insert(self, username,  blog, keywords):
+	def insert(self, username, title,  blog, keywords):
 		'''
 		insert
 
@@ -155,7 +155,7 @@ class BlogTable:
 
 		'''
 		#insert vales & committing them
-		self._cursor.execute(f"INSERT INTO {self._name} VALUES( \"{username}\", \"{blog}\",\"{keywords}\" );")
+		self._cursor.execute(f"INSERT INTO {self._name} VALUES( \"{username}\", \"{title}\", \"{blog}\",\"{keywords}\" );")
 		self._db.commit()
 
 	def getEntryById(self, id : int): #ensuring param is int
