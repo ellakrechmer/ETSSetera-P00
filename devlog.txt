@@ -1,20 +1,20 @@
-group -- 2021-10-28\8:00-8:40 AM
+group -- 2021-10-28\8:00
 clarified database for blogs
 
-group -- 2021-10-29\8:00-8:40 AM
+group -- 2021-10-29\8:00
 created a working app: login/response page
 
-group -- 2021-11-01\8:00-8:40 AM
+group -- 2021-11-01\8:00
 worked on making a sign up page; adding new user and pass to database unless they already exist
 
-ellaK -- 2021-11-02\4:45-6:00 PM
+ellaK -- 2021-11-02\16:45
 made a working sign up page; not sure if it inserts it into table (will check) but doesn't crash anymore
 
-tinaN -- 2021-11-03\7:10-7:53 PM
+tinaN -- 2021-11-03\7:10-19:53
 imported redirect and made the welcome page's route "/loggedin". login info will no longer be shown in the URL in the welcome page. when logged out, user will be directed to the "/" route.
 
-tinaN, shyneC -- 2021-11-04\8:17 AM
+tinaN, shyneC -- 2021-11-04\8:17
 design doc updated with database organization structure - combined table
 
-seanG, patrickG -- 2021-11-04\10:00pm
+seanG, patrickG -- 2021-11-04\22:00
 create class for database, which makes code much simpler, readable, and debuggable (if need be). 
