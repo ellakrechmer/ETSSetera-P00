@@ -25,3 +25,9 @@ ellaK -- 2021--11-06\21:55
 -fixed signup so that confirming password works properly
 -made login successfully check for existing username+password combinations and only login if both are correct
 [long story short: login and signup are working now!!]
+
+seanG, patrickG --2021-11-07\13:42
+-created BlogTable class which will be implemented in __init__.py. API intended to make database operations more readable, debuggable, and easier to implement.
+-BlogTable has entry number (rowid), username, blogText(content), and keywords.
+-added temporary folder for testing code, which shows that BlogTable class works, feel free to add more testing code into the folder. Will be deleted before project is submitted.
+-Right now will add title into blogTable constructor. 
