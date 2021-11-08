@@ -37,3 +37,7 @@ seanG, patrickG --2021-11-07\13:42
 -BlogTable has entry number (rowid), username, blogText(content), and keywords.
 -added temporary folder for testing code, which shows that BlogTable class works, feel free to add more testing code into the folder. Will be deleted before project is submitted.
 -Right now will add title into blogTable constructor. 
+
+shyneC -- 2021-11-07\15:57
+-signup page has link to login
+-made a base/start for html template of making/viewing posts
