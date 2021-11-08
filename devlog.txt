@@ -41,3 +41,9 @@ seanG, patrickG --2021-11-07\13:42
 shyneC -- 2021-11-07\15:57
 -signup page has link to login
 -made a base/start for html template of making/viewing posts
+
+tinaN -- 2021--11-07\23:30
+- added dropdown menu with topics to choose from to categorize a blog
+- added a title box in the /create page and changed the size of the text area to fit one line
+- added a link to go back to the home page in the /create page
+- started a /view in the Python file to view your own post after posting it and other's posts
