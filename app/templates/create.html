@@ -44,18 +44,16 @@
   </select>
   <br><br>
 
-  <form method = "POST">
+  <form action="/create" method = "POST">
     <!-- title -->
-     <textarea name="textarea" rows="1" cols="20"></textarea>
-     <br><br>
-  <form method = "POST">
-    <!-- blog content -->
-    <textarea name="textarea" rows="5" cols="30"></textarea>
+    <input type="text" name="title" rows="1" cols="20"></input>
     <br><br>
-
-  <button type = "submit"> Add Post </button>
-  <br><br>
-  <a href="{{ url_for('loggedin') }}">Go back to homepage</a>
+    <!-- blog content -->
+    <input type="text" name="postcontent" rows="5" cols="30"></input>
+    <br><br>
+    <input type = "submit" value="Add Post">
+    <br><br>
   </form>
+  <a href="{{ url_for('loggedin') }}">Go back to homepage</a>
 
 </html>

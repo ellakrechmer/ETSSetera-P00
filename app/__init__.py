@@ -13,7 +13,7 @@ import os
 import sqlite3
 
 from database import UsernamePasswordTable #import our class
-
+from database import BlogTable
 
 db_file = "tada.db"
 #the conventional way:
@@ -23,6 +23,7 @@ app = Flask(__name__)    #create Flask object
 app.secret_key = os.urandom(32)
 
 userpass = UsernamePasswordTable(db_file, "userpass")
+blog = BlogTable(db_file, "blog")
 
 @app.route("/") #, methods=['GET', 'POST'])
 def disp_loginpage():
@@ -31,10 +32,6 @@ def disp_loginpage():
        return render_template( 'response.html', username=session.get("username"))
     if ("username" != None):
         return render_template( 'login.html' )
-
-@app.route("/create")
-def create():
-    return render_template('create.html')
 
 ##@app.route("/view")
 ##def view():
@@ -79,10 +76,19 @@ def signup():
     else:
         return render_template('signup.html', syntaxerror = "This username already exists")
 
-
 @app.route("/loggedin")
 def loggedin(): # does not show info in URL, shows /loggedin instead
     return render_template( 'response.html', username=session.get("username"))
+
+
+@app.route("/create")
+def create():
+    # username= request.args['username']
+    # title= request.args['title']
+    # post=request.args['postcontent']
+    # topic=request.args['topic']
+    # blog.insert(username, title, post, topic)
+    return render_template('create.html')
 
 
 @app.route("/logout")

@@ -135,9 +135,9 @@ class BlogTable:
 		self._db = sqlite3.connect(fileName, check_same_thread=False)
 		self._cursor = self._db.cursor()
 		self._name = name
-		self._cursor.execute(f"CREATE VIRTUAL TABLE IF NOT EXISTS {self._name} USING fts4( username TEXT, title TEXT NOT NULL,  blog TEXT NOT NULL, keywords TEXT NOT NULL) ;")
+		self._cursor.execute(f"CREATE TABLE IF NOT EXISTS {self._name}( username TEXT, title TEXT NOT NULL,  blog TEXT NOT NULL, topic TEXT NOT NULL) ;")
 
-	def insert(self, username, title,  blog, keywords):
+	def insert(self, username, title,  blog, topic):
 		'''
 		insert
 
@@ -147,15 +147,15 @@ class BlogTable:
 
 		Args
 			username : username
-			blog: blog 
-			keywords: keywords
+			blog: blog
+			topic: topic
 
 		Returns
 			Nothing
 
 		'''
 		#insert vales & committing them
-		self._cursor.execute(f"INSERT INTO {self._name} VALUES( \"{username}\", \"{title}\", \"{blog}\",\"{keywords}\" );")
+		self._cursor.execute(f"INSERT INTO {self._name} VALUES( \"{username}\", \"{title}\", \"{blog}\",\"{topic}\" );")
 		self._db.commit()
 
 	def getEntryById(self, id : int): #ensuring param is int
@@ -171,10 +171,10 @@ class BlogTable:
 		self._db.commit()
 		return data
 
-	def searchByKeyWord(self, keyWords, limit : int):
-		self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE keyWords MATCH \"{keyWords}\" LIMIT {limit};")
+	def searchByKeyWord(self, topic, limit : int):
+		self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE keyWords MATCH \"{topic}\" LIMIT {limit};")
 		data = self._cursor.fetchone()
-		return data	
+		return data
 
 '''
 Database testing code
