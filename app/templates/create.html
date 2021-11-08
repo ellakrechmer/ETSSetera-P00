@@ -17,7 +17,7 @@
   </head>
 
   <body>
-     <h1>Welcome to ETSSetera blogs</h1>
+     <h1>Welcome to ETSSetera blogs!</h1>
   </body>
 
   <h1>
@@ -28,12 +28,34 @@
       <!-- loop through posts -->
   </ul>
 
+  <body>
+    Type your blog below! Remember to title your blog and to put it in a category.
+  </body>
+  <br><br>
+
+  <label for="topic">Topic:</label>
+  <!-- lets you choose topic -->
+  <select name="topic" id="topic">
+    <option value="empty">  </option>
+    <option value="teachers">Teachers</option>
+    <option value="schoolpolicies">School Policies</option>
+    <option value="rants">Rants</option>
+    <option value="misc">Miscellaneous</option>
+  </select>
+  <br><br>
+
   <form method = "POST">
     <!-- new post area -->
-    <textarea></textarea>
+     <textarea name="textarea" rows="1" cols="20"></textarea>
+     <br><br>
+  <form method = "POST">
+    <!-- new post area -->
+    <textarea name="textarea" rows="5" cols="30"></textarea>
     <br><br>
 
-    <button type = "submit"> Add Post </button>
+  <button type = "submit"> Add Post </button>
+  <br><br>
+  <a href="{{ url_for('loggedin') }}">Go back to homepage</a>
   </form>
 
 </html>
