@@ -36,8 +36,8 @@ def disp_loginpage():
 def create():
     return render_template('create.html')
 
-@app.route("/view")
-def view():
+##@app.route("/view")
+##def view():
 ## where you can view the blogs
 
 @app.route("/login")
