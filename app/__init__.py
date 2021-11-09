@@ -12,8 +12,7 @@ from random import *
 import os
 import sqlite3
 
-from database import UsernamePasswordTable #import our class
-from database import BlogTable
+from database import UsernamePasswordTable, BlogTable #using database classes
 
 db_file = "tada.db"
 #the conventional way:
@@ -33,9 +32,6 @@ def disp_loginpage():
     if ("username" != None):
         return render_template( 'login.html' )
 
-##@app.route("/view")
-##def view():
-## where you can view the blogs
 
 @app.route("/login")
 def login():
@@ -81,22 +77,23 @@ def loggedin(): # does not show info in URL, shows /loggedin instead
     return render_template( 'response.html', username=session.get("username"))
 
 
-@app.route("/createdisplay")
-def disp_createpage():
-    if (session.get("username") is not None):
-        # if there's an existing session, shows welcome page
-       return render_template( 'response.html', username=session.get("username"))
-    if ("username" != None):
-        return render_template( 'create.html' )
-
-@app.route("/create")
+@app.route("/create", methods=["GET", "POST"])
 def create():
-    # username= request.args['username']
-    # title= request.args['title']
-    # post=request.args['postcontent']
-    # topic=request.args['topic']
-    # blog.insert(username, title, post, topic)
-    return render_template('create.html')
+    if request.method == "GET":
+        return render_template('create.html')
+    else:
+        topic = request.form['topic']
+        username = session['username']
+        title = request.form['title']
+        post = request.form['postcontent']
+        blog.insert(username, title, post, topic)
+        blog._printall()
+        return redirect('/view')
+
+@app.route("/view")
+def view():
+## where you can view the blogs
+    return render_template('view.html', username=session.get("username"))
 
 
 @app.route("/logout")
