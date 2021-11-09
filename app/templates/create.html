@@ -33,18 +33,19 @@
   </body>
   <br><br>
 
-  <label for="topic">Topic:</label>
-  <!-- lets you choose topic -->
-  <select name="topic" id="topic">
-    <option value="empty">  </option>
-    <option value="teachers">Teachers</option>
-    <option value="schoolpolicies">School Policies</option>
-    <option value="rants">Rants</option>
-    <option value="misc">Miscellaneous</option>
-  </select>
-  <br><br>
+
 
   <form action="/create" method = "POST">
+      <label for="topic">Topic:</label>
+      <!-- lets you choose topic -->
+      <select name="topic" id="topic">
+        <option value="empty">  </option>
+        <option value="teachers">Teachers</option>
+        <option value="schoolpolicies">School Policies</option>
+        <option value="rants">Rants</option>
+        <option value="misc">Miscellaneous</option>
+      </select>
+      <br><br>
     <!-- title -->
     <input type="text" name="title" rows="1" cols="20"></input>
     <br><br>

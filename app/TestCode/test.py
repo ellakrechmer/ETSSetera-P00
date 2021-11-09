@@ -5,13 +5,18 @@ def main():
 
 	db = BlogTable("dbtest.db", "test")
 
+	db.insert("pging04", "t0","YEE", "noeem")
 	db.insert("sging04", "t1","Vivamus integer nom", "nom")
 	db.insert("sean", "t2","Vivamus sucipit taciti", "vivamus")
-	ret = db.getEntryById(1)
-	print(ret)
+	db.insert("pging0444", "t0","YEE", "noeem")
+	db.insert("sging04444", "t1","Vivamus integer nom", "nom")
+	db.insert("sean444", "t2","Vivamus sucipit taciti", "vivamus")
+	print(db.getEntryById(1))
 	print(db.searchByKeyWord("vivamus", 1))
-	db.popById(1)
-	print(ret)
+	db.popById(0)
+	db._printall()
+
+	
 
 #are the keyword case sensitive
 #only one keyword?

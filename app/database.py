@@ -111,6 +111,22 @@ class UsernamePasswordTable:
 
 
 class BlogTable:
+	'''
+		BlogTable Class
+
+		A table inside of a database NOT  a database. Specifically
+		designed for the blog USING FTS4 for faster search
+
+		Just wanted to make interacting w tables easier
+
+		DB design:
+			username TEXT, 
+			title TEXT NOT NULL,  
+			blog TEXT NOT NULL, 
+			topic TEXT NOT NULL
+
+	'''
+
 	def __init__ (self,fileName, name):
 		'''
 		__init__
@@ -118,7 +134,8 @@ class BlogTable:
 		    filename: database file name
 			name: name of table
 		Returns
-			instance of UsernamePasswordTable
+			instance of BlogTable
+
 
 
 		Class attributes
@@ -135,21 +152,18 @@ class BlogTable:
 		self._db = sqlite3.connect(fileName, check_same_thread=False)
 		self._cursor = self._db.cursor()
 		self._name = name
-		self._cursor.execute(f"CREATE TABLE IF NOT EXISTS {self._name}( username TEXT, title TEXT NOT NULL,  blog TEXT NOT NULL, topic TEXT NOT NULL) ;")
+		self._cursor.execute(f"CREATE VIRTUAL TABLE IF NOT EXISTS {self._name} USING fts4( username TEXT, title TEXT NOT NULL,  blog TEXT NOT NULL, topic TEXT NOT NULL) ;")
 
 	def insert(self, username, title,  blog, topic):
 		'''
 		insert
 
-		insert username and password. DOES NOT CHECK if it is duplicate.
+		insert username, title,  blog, topic. DOES NOT CHECK if it is duplicate.
 		will throw error if duplicate! please use userExists method below!
 		returns Nothing
 
 		Args
-			username : username
-			blog: blog
-			topic: topic
-
+			username, title,  blog, topic
 		Returns
 			Nothing
 
@@ -159,12 +173,34 @@ class BlogTable:
 		self._db.commit()
 
 	def getEntryById(self, id : int): #ensuring param is int
+		'''
+		getEntryById
+
+		returns entry with certain rowid
+
+		Args
+			id MUST BE INT
+		Returns
+			entry dict
+
+		'''
 		self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE rowid={id} LIMIT 1;")
 		data = self._cursor.fetchone()
 		return data
 
 
 	def popById(self, id : int):
+		'''
+		popById
+
+		pops entry with certain rowid
+
+		Args
+			id MUST BE INT
+		Returns
+			entry dict
+
+		'''
 		self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE rowid={id} LIMIT 1;")
 		data = self._cursor.fetchone()
 		self._cursor.execute(f"DELETE from {self._name} WHERE rowid={id};")
@@ -172,10 +208,31 @@ class BlogTable:
 		return data
 
 	def searchByKeyWord(self, topic, limit : int):
-		self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE keyWords MATCH \"{topic}\" LIMIT {limit};")
+		'''
+		searchByKeyWord
+
+		returns limit size list of entries searched by topic
+
+		Args
+			id MUST BE INT
+		Returns
+			entry dict
+
+		'''
+		self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE topic MATCH \"{topic}\" LIMIT {limit};")
 		data = self._cursor.fetchone()
 		return data
 
+	def _printall(self):
+		'''
+		_printall
+
+		Debugging function. Prints all items in table.
+
+		'''
+		self._cursor.execute(f"SELECT * from {self._name}")
+		data = self._cursor.fetchall()
+		print(data)
 '''
 Database testing code
 
