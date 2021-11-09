@@ -81,6 +81,14 @@ def loggedin(): # does not show info in URL, shows /loggedin instead
     return render_template( 'response.html', username=session.get("username"))
 
 
+@app.route("/createdisplay")
+def disp_createpage():
+    if (session.get("username") is not None):
+        # if there's an existing session, shows welcome page
+       return render_template( 'response.html', username=session.get("username"))
+    if ("username" != None):
+        return render_template( 'create.html' )
+
 @app.route("/create")
 def create():
     # username= request.args['username']
