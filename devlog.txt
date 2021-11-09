@@ -48,8 +48,10 @@ tinaN -- 2021--11-07\23:30
 - added a link to go back to the home page in the /create page
 - started a /view in the Python file to view your own post after posting it and other's posts
 
-gropu -- 2021-11-08\8:00
+group -- 2021-11-08\8:00
 - worked on adding posts to database
+- changed input type for creating posts so that we can read in arguments
+- made code more readable by changing parameter and variable names
 
 seanG, patrickG --2021-11-08\21:41
 - made minor changes to database.py, specifically adding printall function 
