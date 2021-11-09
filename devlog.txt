@@ -53,3 +53,8 @@ seanG, patrickG --2021-11-08\21:41
 - fixed bug where searchbykeyword broke
 - implement a database functionality into /create 
 - added get and post functionality to /create
+
+tinaN -- 2021--11-08\23:10
+- changed the sizes of the textboxes to fit their purpose (ex. blog textbox is larger than the title textbox)
+- created a new page for the user to go to after creating a post to view their posts along with other posts
+- added links to create another post and to go to the homepage in the new view page
