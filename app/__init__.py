@@ -76,12 +76,18 @@ def signup():
 
 @app.route("/loggedin")
 def loggedin(): # does not show info in URL, shows /loggedin instead
+
+    if session.get("username") is None:
+        return redirect("/")
     data = blog.seeContent()
     return render_template( 'response.html', username=session.get("username"), data = data)
 
 
 @app.route("/create", methods=["GET", "POST"])
 def create():
+    if session.get("username") is None:
+        return redirect("/")
+
     if request.method == "GET":
         return render_template('create.html')
     else:
@@ -108,16 +114,25 @@ def logout():
 
 
 @app.route("/viewposts")
-def posts():    
+def posts():   
+
+    if session.get("username") is None:
+        return redirect("/")
+
     return render_template("posts.html", matches=blog.seeContent())
 
 @app.route("/view/<int:id>")
 def viewpost(id):
+    if session.get("username") is None:
+        return redirect("/")
+
     blogContent = blog.getEntryById(id)
     return render_template("viewpost.html", title=blogContent[2],
                             content=blogContent[3],
                             username=blogContent[1],
-                            keywords=blogContent[4])
+                            keywords=blogContent[4],
+                            canEdit=True) #NOT FIXED NEED ERROR HANDLING TOOOO!!!!!
+    # NEED TO FIX /VIEWPOSTS SO THAT IT DOESN'T CRASH IF THERE ARE NO POSTS!
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified

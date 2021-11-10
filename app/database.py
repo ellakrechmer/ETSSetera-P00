@@ -244,6 +244,11 @@ class BlogTable:
 		self._cursor.execute(f"SELECT rowid,* from {self._name}")
 		data = self._cursor.fetchall()
 		return data
+
+	def isAuthor():
+		return True
+
+		#TO BE FIXED!!!!!!!~!!
 '''
 Database testing code
 
