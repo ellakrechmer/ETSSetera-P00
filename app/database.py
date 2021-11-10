@@ -230,7 +230,7 @@ class BlogTable:
 		Debugging function. Prints all items in table.
 
 		'''
-		self._cursor.execute(f"SELECT * from {self._name}")
+		self._cursor.execute(f"SELECT rowid, * from {self._name}")
 		data = self._cursor.fetchall()
 		print(data)
 

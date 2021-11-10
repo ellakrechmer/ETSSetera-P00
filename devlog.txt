@@ -58,6 +58,8 @@ seanG, patrickG -- 2021-11-08\21:41
 - fixed bug where searchbykeyword broke
 - implement a database functionality into /create
 - added get and post functionality to /create
+- implement a database functionality into /create
+- added get and post functionality to /create
 
 tinaN -- 2021-11-08\23:10
 - changed the sizes of the textboxes to fit their purpose (ex. blog textbox is larger than the title textbox)
@@ -67,6 +69,13 @@ tinaN -- 2021-11-08\23:10
 group -- 2021-11-09\08:00
 - fixed text area for creating posts
 - fixed view and render_template to display topic and content after creating a post
+
+seanG, patrickG --2021-11-09\19:42
+- added endpoints /viewposts and /view/<int:id>, with some scrappy templates
+- made templates for those
+- /viewposts currently prints a hyperlink to every entry
+- /view/<int:id> will show a post with a particular rowid
+- **** /viewposts and /view/<int:id> are here to implement some code that will be used in their actual renditions. For example, _printall() is used which is a developmental function in our db. Just in case you were wondering for why it's used when it's a private function
 
 shyneC -- 2021-11-09\20:50
 - added function of returning BlogTable as string in database
