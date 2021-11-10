@@ -108,8 +108,8 @@ def logout():
 
 
 @app.route("/viewposts")
-def posts():
-    return render_template("posts.html", matches=blog._printall())
+def posts():    
+    return render_template("posts.html", matches=blog.seeContent())
 
 @app.route("/view/<int:id>")
 def viewpost(id):
