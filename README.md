@@ -18,14 +18,14 @@ $ cd ETSSetera-P00/app
 $ python3 -m venv <name>
 $ source <name>/bin/activate
 ```
-*<name> represents what your virtual environment will be!
+_`<name>` represents what your virtual environment will be called, replace it with your preferred name for the venv_
 
 
 3. Install project dependencies.
 ```
 (<name>) $ pip3 install -r requirements.txt
 ```
-*(<name>) indicates that you are in the virtual environment
+_`(<name>)` indicates that you are in the virtual environment_
 
   
 4. Run the app.
