@@ -232,7 +232,7 @@ class BlogTable:
 		'''
 		self._cursor.execute(f"SELECT rowid, * from {self._name}")
 		data = self._cursor.fetchall()
-		print(data)
+		return data
 
 	def seeContent(self):
 		'''
@@ -241,7 +241,7 @@ class BlogTable:
 		returns content of table as string
 
 		'''
-		self._cursor.execute(f"SELECT * from {self._name}")
+		self._cursor.execute(f"SELECT rowid,* from {self._name}")
 		data = self._cursor.fetchall()
 		return data
 '''
