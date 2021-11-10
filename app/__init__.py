@@ -14,6 +14,7 @@ import sqlite3
 
 from database import UsernamePasswordTable, BlogTable #using database classes
 
+
 db_file = "tada.db"
 #the conventional way:
 #from flask import Flask, render_template, request
@@ -28,7 +29,8 @@ blog = BlogTable(db_file, "blog")
 def disp_loginpage():
     if (session.get("username") is not None):
         # if there's an existing session, shows welcome page
-       return render_template( 'response.html', username=session.get("username"))
+        data = blog.seeContent()
+        return render_template( 'response.html', username=session.get("username"), data = data)
     if ("username" != None):
         return render_template( 'login.html' )
 
@@ -52,7 +54,8 @@ def login():
 def disp_signuppage():
     if (session.get("username") is not None):
         # if there's an existing session, shows welcome page
-       return render_template( 'response.html', username=session.get("username"))
+        data = blog.seeContent()
+        return render_template( 'response.html', username=session.get("username"), data = data)
     if ("username" != None):
         return render_template( 'signup.html' )
 
@@ -74,7 +77,8 @@ def signup():
 
 @app.route("/loggedin")
 def loggedin(): # does not show info in URL, shows /loggedin instead
-    return render_template( 'response.html', username=session.get("username"))
+    data = blog.seeContent()
+    return render_template( 'response.html', username=session.get("username"), data = data)
 
 
 @app.route("/create", methods=["GET", "POST"])

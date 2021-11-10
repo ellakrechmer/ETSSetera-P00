@@ -120,9 +120,9 @@ class BlogTable:
 		Just wanted to make interacting w tables easier
 
 		DB design:
-			username TEXT, 
-			title TEXT NOT NULL,  
-			blog TEXT NOT NULL, 
+			username TEXT,
+			title TEXT NOT NULL,
+			blog TEXT NOT NULL,
 			topic TEXT NOT NULL
 
 	'''
@@ -233,6 +233,17 @@ class BlogTable:
 		self._cursor.execute(f"SELECT * from {self._name}")
 		data = self._cursor.fetchall()
 		print(data)
+
+	def seeContent(self):
+		'''
+		seeContent
+
+		returns content of table as string
+
+		'''
+		self._cursor.execute(f"SELECT * from {self._name}")
+		data = self._cursor.fetchall()
+		return data
 '''
 Database testing code
 
