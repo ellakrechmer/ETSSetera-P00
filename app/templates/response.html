@@ -23,6 +23,15 @@
   <body>
     Welcome to StuyBlogs! Use the links below to create and view posts.
   </body>
+  <ul>
+    {% for row in data %}
+        <h4> {{row[1]}} </h4>
+        {{row[2]}}
+        <br>
+        <i> Written by {{row[0]}} </i>
+        <br><br>
+    {% endfor %}
+  <ul>
   <br><br>
   <a href="{{ url_for('create') }}">Create Post</a>
   <br><br>

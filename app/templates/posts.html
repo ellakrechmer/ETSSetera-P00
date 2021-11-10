@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Current Posts</title>
+</head>
+<body>
+
+	<!--
+	(3, 'sean', 't2', 'Vivamus sucipit taciti', 'vivamus')
+
+	sample tuple of one of our entries of our blog db so long 
+	as we ensure to select rowid, * in our command.
+	-->
+
+	{% for id, username, title, contents, keywords in matches %}
+	<div>
+		<h2>
+			<a href="/view/{{id}}">{{title}}</a>
+		</h2>
+	</div>
+	<hr>
+
+	{% endfor %}
+
+</body>
+</html>

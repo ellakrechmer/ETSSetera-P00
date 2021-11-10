@@ -14,6 +14,7 @@ import sqlite3
 
 from database import UsernamePasswordTable, BlogTable #using database classes
 
+
 db_file = "tada.db"
 #the conventional way:
 #from flask import Flask, render_template, request
@@ -28,7 +29,8 @@ blog = BlogTable(db_file, "blog")
 def disp_loginpage():
     if (session.get("username") is not None):
         # if there's an existing session, shows welcome page
-       return render_template( 'response.html', username=session.get("username"))
+        data = blog.seeContent()
+        return render_template( 'response.html', username=session.get("username"), data = data)
     if ("username" != None):
         return render_template( 'login.html' )
 
@@ -47,12 +49,12 @@ def login():
     else:
         session["username"] = username
         return redirect('/loggedin')
-
 @app.route("/signupdisplay")
 def disp_signuppage():
     if (session.get("username") is not None):
         # if there's an existing session, shows welcome page
-       return render_template( 'response.html', username=session.get("username"))
+        data = blog.seeContent()
+        return render_template( 'response.html', username=session.get("username"), data = data)
     if ("username" != None):
         return render_template( 'signup.html' )
 
@@ -74,7 +76,8 @@ def signup():
 
 @app.route("/loggedin")
 def loggedin(): # does not show info in URL, shows /loggedin instead
-    return render_template( 'response.html', username=session.get("username"))
+    data = blog.seeContent()
+    return render_template( 'response.html', username=session.get("username"), data = data)
 
 
 @app.route("/create", methods=["GET", "POST"])
@@ -102,6 +105,19 @@ def logout():
     session["username"] = None
     session.pop("username", None)
     return redirect('/')
+
+
+@app.route("/viewposts")
+def posts():
+    return render_template("posts.html", matches=blog._printall())
+
+@app.route("/view/<int:id>")
+def viewpost(id):
+    blogContent = blog.getEntryById(id)
+    return render_template("viewpost.html", title=blogContent[2],
+                            content=blogContent[3],
+                            username=blogContent[1],
+                            keywords=blogContent[4])
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified
