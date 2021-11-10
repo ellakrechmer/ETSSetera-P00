@@ -13,9 +13,9 @@
     <title> RESPONSE PAGE </title>
   </head>
 
-  <h1>
-    ETSSetera Shyne Choi, Ella Krechmer, Tina Nguyen, Sean+Patrick Ging
-  </h1>
+  <h1> <marquee>
+    ETSSetera: Shyne Choi, Ella Krechmer, Tina Nguyen, Sean+Patrick Ging
+  </marquee> </h1>
   <h2>
     Hello, {{ username }}!
   </h2>
@@ -25,13 +25,14 @@
   </body>
   <ul>
     {% for row in data %}
-        <h4> {{row[1]}} </h4>
+        <b> {{row[1]}} </b> -- <u>{{row[3]}}</u>
+        <br>
         {{row[2]}}
         <br>
         <i> Written by {{row[0]}} </i>
         <br><br>
     {% endfor %}
-  <ul>
+  </ul>
   <br><br>
   <a href="{{ url_for('create') }}">Create Post</a>
   <br><br>
