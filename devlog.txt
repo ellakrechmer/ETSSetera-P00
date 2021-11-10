@@ -26,21 +26,21 @@ shyneC -- 2021-11-05\08:40
 added the error of different usernames
 
 ellaK -- 2021--11-06\21:55
--fixed link from login page to signup; now, you can successfully sign up and go to the response page
--fixed login so that it goes to \login instead of \signup (mistake from classwork testing)
--fixed signup so that confirming password works properly
--made login successfully check for existing username+password combinations and only login if both are correct
+- fixed link from login page to signup; now, you can successfully sign up and go to the response page
+- fixed login so that it goes to \login instead of \signup (mistake from classwork testing)
+- fixed signup so that confirming password works properly
+- made login successfully check for existing username+password combinations and only login if both are correct
 [long story short: login and signup are working now!!]
 
 seanG, patrickG --2021-11-07\13:42
--created BlogTable class which will be implemented in __init__.py. API intended to make database operations more readable, debuggable, and easier to implement.
--BlogTable has entry number (rowid), username, blogText(content), and keywords.
--added temporary folder for testing code, which shows that BlogTable class works, feel free to add more testing code into the folder. Will be deleted before project is submitted.
--Right now will add title into blogTable constructor.
+- created BlogTable class which will be implemented in __init__.py. API intended to make database operations more readable, debuggable, and easier to implement.
+- BlogTable has entry number (rowid), username, blogText(content), and keywords.
+- added temporary folder for testing code, which shows that BlogTable class works, feel free to add more testing code into the folder. Will be deleted before project is submitted.
+- Right now will add title into blogTable constructor.
 
 shyneC -- 2021-11-07\15:57
--signup page has link to login
--made a base/start for html template of making/viewing posts
+- signup page has link to login
+- made a base/start for html template of making/viewing posts
 
 tinaN -- 2021-11-07\23:30
 - added dropdown menu with topics to choose from to categorize a blog
@@ -67,3 +67,7 @@ tinaN -- 2021-11-08\23:10
 group -- 2021-11-09\08:00
 - fixed text area for creating posts
 - fixed view and render_template to display topic and content after creating a post
+
+shyneC -- 2021-11-09\20:50
+- added function of returning BlogTable as string in database
+- response.html now shows all posts made (layout is questionable but it shows up)
