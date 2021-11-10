@@ -30,5 +30,5 @@ _`(<name>)` indicates that you are in the virtual environment_
   
 4. Run the app.
 ```
-(env) $ python3 __init__.py
+(<name>) $ python3 __init__.py
 ```
