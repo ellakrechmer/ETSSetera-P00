@@ -32,9 +32,6 @@ def disp_loginpage():
     if ("username" != None):
         return render_template( 'login.html' )
 
-##@app.route("/view")
-##def view():
-## where you can view the blogs
 
 @app.route("/login")
 def login():
@@ -85,12 +82,17 @@ def create():
         return render_template('create.html')
     else:
         topic = request.form['topic']
-        username = session['username']
+        username = session.get("username")
         title = request.form['title']
         post = request.form['postcontent']
         blog.insert(username, title, post, topic)
         blog._printall()
-        return render_template('create.html')
+        return view(topic, title, post)
+
+@app.route("/view")
+def view(topic, title, post):
+## where you can view the blogs
+    return render_template('view.html', username=session.get("username"), title=title, post=post, topic=topic)
 
 
 @app.route("/logout")

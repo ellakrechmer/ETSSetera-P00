@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+     ETSSetera: Shyne Choi, Ella Krechmer, Tina Nguyen, Sean+Patrick Ging
+     SoftDev
+     P00
+ -->
+
+ <html>
+
+   <head>
+     <meta charset="UTF-8">
+     <title>ETSSetera</title>
+
+
+   </head>
+
+   <body>
+      <h1>Your blog has been posted, {{ username }}!</h1>
+   </body>
+   <!-- you will see the most recent post first, which would be your post -->
+   <br><br>
+
+    <body>
+        <h2> {{ title }} </h2>
+    </body>
+
+    <body>
+         {{ post }}
+    </body>
+    <br><br>
+    <body>
+    <i> {{ topic }}</i>
+    </body>
+   <br><br>
+   <br><br>
+   <a href="{{ url_for('create') }}">Create another post</a>
+   <br><br>
+   <a href="{{ url_for('loggedin') }}">Go back to homepage</a>
