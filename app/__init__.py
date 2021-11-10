@@ -50,7 +50,6 @@ def login():
     else:
         session["username"] = username
         return redirect('/loggedin')
-
 @app.route("/signupdisplay")
 def disp_signuppage():
     if (session.get("username") is not None):
@@ -100,6 +99,19 @@ def logout():
     session["username"] = None
     session.pop("username", None)
     return redirect('/')
+
+
+@app.route("/viewposts")
+def posts():
+    return render_template("posts.html", matches=blog._printall())
+
+@app.route("/view/<int:id>")
+def viewpost(id):
+    blogContent = blog.getEntryById(id)
+    return render_template("viewpost.html", title=blogContent[2],
+                            content=blogContent[3],
+                            username=blogContent[1],
+                            keywords=blogContent[4])
 
 if __name__ == "__main__": #false if this file imported as module
     #enable debugging, auto-restarting of server when this file is modified
