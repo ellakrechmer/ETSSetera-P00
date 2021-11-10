@@ -13,27 +13,29 @@
     <title> RESPONSE PAGE </title>
   </head>
 
-  <h1> <marquee>
-    ETSSetera: Shyne Choi, Ella Krechmer, Tina Nguyen, Sean+Patrick Ging
-  </marquee> </h1>
+
   <h2>
     Hello, {{ username }}!
   </h2>
 
+  <h3>
+    ETSSetera: Shyne Choi, Ella Krechmer, Tina Nguyen, Sean+Patrick Ging
+  </h3>
+
   <body>
-    Welcome to StuyBlogs! Use the links below to create and view posts.
+    Welcome to ETSSetera blogs! Use the links below to create and view posts.
   </body>
   <ul>
+    <br>
     {% for row in data %}
-        <b> {{row[1]}} </b> -- <u>{{row[3]}}</u>
+        <b> {{row[2]}} </b> -- <u>{{row[4]}}</u>
         <br>
-        {{row[2]}}
+        {{row[3]}}
         <br>
-        <i> Written by {{row[0]}} </i>
+        <i> Written by {{row[1]}} </i>
         <br><br>
     {% endfor %}
   </ul>
-  <br><br>
   <a href="{{ url_for('create') }}">Create Post</a>
   <br><br>
   <a href="{{ url_for('logout') }}">Log Out</a>
