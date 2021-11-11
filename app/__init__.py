@@ -113,12 +113,12 @@ def logout():
 
 
 '''@app.route("/viewposts")
-def posts():   
+def posts():
 
     if session.get("username") is None:
         return redirect("/")
 
-    return render_template("posts.html", matches=blog.seeContent()) 
+    return render_template("posts.html", matches=blog.seeContent())
 
 ''' # to be deleted developmental
 
