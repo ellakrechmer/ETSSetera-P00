@@ -184,6 +184,8 @@ class BlogTable:
 			entry dict
 
 		'''
+		assert self.idExists(id) # WILL THROW AN ERROR IF THE ID DOESN'T EXIST!!!!!
+
 		self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE rowid={id} LIMIT 1;")
 		data = self._cursor.fetchone()
 		return data
@@ -201,6 +203,8 @@ class BlogTable:
 			entry dict
 
 		'''
+		assert self.idExists(id) # WILL THROW AN ERROR IF THE ID DOESN'T EXIST!!!!!
+
 		self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE rowid={id} LIMIT 1;")
 		data = self._cursor.fetchone()
 		self._cursor.execute(f"DELETE from {self._name} WHERE rowid={id};")
@@ -219,7 +223,7 @@ class BlogTable:
 			entry dict
 
 		'''
-		self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE topic MATCH \"{topic}\" LIMIT {limit};")
+		self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE topic LIKE \"{topic}\" LIMIT {limit};")
 		data = self._cursor.fetchone()
 		return data
 
@@ -232,7 +236,7 @@ class BlogTable:
 		'''
 		self._cursor.execute(f"SELECT rowid, * from {self._name}")
 		data = self._cursor.fetchall()
-		return data
+		print(data)
 
 	def seeContent(self):
 		'''
@@ -245,39 +249,48 @@ class BlogTable:
 		data = self._cursor.fetchall()
 		return data
 
-	def isAuthor():
-		return True
+	def isAuthor(self, username : str, id : int):
+		'''
+		isAuthor()
+		args: username : str the username
+			  id : int the post in question
 
-		#TO BE FIXED!!!!!!!~!!
-'''
-Database testing code
+		will return is username is the author of post # id
+		
+		'''	
+		
+		assert self.idExists(id)# WILL THROW AN ERROR IF THE ID DOESN'T EXIST!!!!!
+		return self.getEntryById(id)[1] == username
 
-This is mostly for my purposes only we can delete it when we're
-Deploying the app
+	def updatePost(self, title, postContent, keyWords, id : int):
+		'''
+		updatePost()
 
-Thanks Patrick and Sean
+		args: title title for new entry
+			  postContent postContent in new entry
+			  keyWords keyWords in new entry
+			  id : int the id we're changing MUST BE INT 
 
-from database import UsernamePasswordTable
+		updates post number id with title, postContent, keyWords
+		'''
 
-userpass = UsernamePasswordTable("test.db", "db")
+		assert self.idExists(id) # WILL THROW AN ERROR IF THE ID DOESN'T EXIST!!!!!
 
+		self._cursor.execute(f"UPDATE {self._name} SET title = \"{title}\", blog = \"{postContent}\", topic = \"{keyWords}\" WHERE rowid = {id};")
+		self._db.commit()
 
-print(" should print false")
-print(userpass.userExists("user"))
+	def idExists(self, id : int):
+			'''
+                idExist()
 
-print(" should print false")
-print(userpass.passMatch("user", "pass"))
+                args: id : int id of post
 
+                will check if there is an entry with the id id
 
-#userpass.insert("user", "pass")
-
-print(" should print true")
-print(userpass.userExists("user"))
-
-
-print(" should print true")
-print(userpass.passMatch("user", "pass"))
-
-print(" should print false")
-print(userpass.passMatch("user", "passs"))
-'''
+                when we use self.getEntryById(id) and the entry doesn't exist
+                it will return soemthing with noneType, so if it doesn't return it
+                then it must exist
+			'''
+			self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE rowid={id} LIMIT 1;")
+			data = self._cursor.fetchone()
+			return data is not None

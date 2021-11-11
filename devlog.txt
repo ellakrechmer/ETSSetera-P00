@@ -87,3 +87,17 @@ ellaK -- 2021-11-09\20:56
 group -- 2021-11-10\08:00
 - fixed sign up crashing
 - updated formatting for creating and viewing posts
+
+Patrick and Sean Ging 2021/11/10 8:00
+- fixed bug where a user not logged in could access existing posts
+- setting up infrastructure for editing posts in both database and in the html and init.py
+
+Patrick and Sean Ging 11/11/2021 14:15
+- added idExists() , updatePosts() , isAuthor() functionalities to BlogTable class
+- all functions in BlogTable that have id as an argument, with exception to idExists, will throw an error by us if id doesn't exist
+  so please please please use the idExists(). We're implementing this because when the errors get thrown because of Id not existing, it 
+  gets rather messy when trying to find the source. So we added the assert statement to make it really debuggable.
+- Commented out endpoint /viewposts, perhaps planning on deleting it and posts.html because it's a developmental endpoint
+- fixed the canEdit in __init__.py so that it will respond to isAuthor()
+- updated some test code for database but that's more minor
+- deleted old test code lying in database.py. It wasn't needed and was messing up my coding because of syntax highlighting.

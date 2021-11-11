@@ -96,7 +96,6 @@ def create():
         title = request.form['title']
         post = request.form['postcontent']
         blog.insert(username, title, post, topic)
-        blog._printall()
         return view(topic, title, post)
 
 @app.route("/view")
@@ -113,13 +112,15 @@ def logout():
     return redirect('/')
 
 
-@app.route("/viewposts")
+'''@app.route("/viewposts")
 def posts():   
 
     if session.get("username") is None:
         return redirect("/")
 
-    return render_template("posts.html", matches=blog.seeContent())
+    return render_template("posts.html", matches=blog.seeContent()) 
+
+''' # to be deleted developmental
 
 @app.route("/view/<int:id>")
 def viewpost(id):
@@ -131,7 +132,7 @@ def viewpost(id):
                             content=blogContent[3],
                             username=blogContent[1],
                             keywords=blogContent[4],
-                            canEdit=True) #NOT FIXED NEED ERROR HANDLING TOOOO!!!!!
+                            canEdit=blog.isAuthor(session.get("username"), id)) #NOT FIXED NEED ERROR HANDLING TOOOO!!!!!
     # NEED TO FIX /VIEWPOSTS SO THAT IT DOESN'T CRASH IF THERE ARE NO POSTS!
 
 if __name__ == "__main__": #false if this file imported as module
