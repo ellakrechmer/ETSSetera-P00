@@ -103,6 +103,14 @@ def create():
         blog.insert(username, title, post, topic)
         return view(topic, title, post)
 
+@app.route("/edit")
+def edit():
+    data = blog.seeContent()
+    return editpost(data)
+def editpost(data):
+    return render_template('edit.html', post = data[len(data)-1][3], title = data[len(data)-1][2], topic = data[len(data)-1][4])
+#PREFILL TOPIC NOT WORKING :(
+
 @app.route("/view")
 def view(topic, title, post):
 ## where you can view the blogs
