@@ -35,7 +35,7 @@ def disp_loginpage():
         else:
             topic = request.form['topic']
             data = blog.seeContent()
-            return viewselected(topic, data)
+            return render_template( 'response.html', username=session.get("username"), topic=topic, data=data )
     if ("username" != None):
         return render_template( 'login.html' )
 
@@ -77,7 +77,7 @@ def signup():
     elif not userpass.userExists(username):
         userpass.insert(username, password) # committing actions to database must be done every time you commit a command
         session["username"]=username
-        return redirect("/")
+        return redirect("/loggedin")
     elif (password!=passauth):
         return render_template('signup.html', passerror="Passwords must match")
     else:
