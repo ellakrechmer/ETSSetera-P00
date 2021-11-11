@@ -38,7 +38,7 @@
   <form action="/create" method = "POST">
     <label for="topic">Topic:</label>
     <!-- lets you choose topic -->
-    <select name="topic" id="topic">
+    <select name="topic" value="{{ topic }}"  id="topic">
       <option value="empty">  </option>
       <option value="Teachers">Teachers</option>
       <option value="School Policies">School Policies</option>
@@ -53,12 +53,12 @@
     <br><br>
     <!-- title -->
     <label for="title">Title:</label>
-    <input type="text" name="title" style="width: 250px;"></input>
+    <input type="text" value="{{ title }}" name="title" style="width: 250px;"></input>
     <br><br>
     <!-- blog content -->
     <label for="postcontent">Write Your Post Here:</label>
     <br>
-    <textarea name="postcontent" style="width: 400px; height: 200px;"></textarea>
+    <textarea name="postcontent" style="width: 400px; height: 200px;">{{ post }}</textarea>
     <br><br>
     <input type = "submit" value="Add Post">
     <br><br>
