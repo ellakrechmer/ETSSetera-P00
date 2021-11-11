@@ -101,3 +101,7 @@ Patrick and Sean Ging 11/11/2021 14:15
 - fixed the canEdit in __init__.py so that it will respond to isAuthor()
 - updated some test code for database but that's more minor
 - deleted old test code lying in database.py. It wasn't needed and was messing up my coding because of syntax highlighting.
+
+shyneC -- 2021-11-11 16:55
+- response page now has a dropdown to select the topic that the user wants to explore blogs off
+- added viewselected.html (shows the posts of the specific topic selected from response page)
