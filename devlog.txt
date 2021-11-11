@@ -1,59 +1,59 @@
-group -- 2021-10-28\08:00
+group -- 2021-10-28 08:00
 clarified database for blogs
 
-group -- 2021-10-29\08:00
+group -- 2021-10-29 08:00
 created a working app: login/response page
 
-group -- 2021-11-01\08:00
+group -- 2021-11-01 08:00
 worked on making a sign up page; adding new user and pass to database unless they already exist
 
-ellaK -- 2021-11-02\16:45
+ellaK -- 2021-11-02 16:45
 made a working sign up page; not sure if it inserts it into table (will check) but doesn't crash anymore
 
-shyneC -- 2021-11-03\08:40
+shyneC -- 2021-11-03 08:40
 allowed the user to stay logged in (w/ session)
 
-tinaN -- 2021-11-03\19:10
+tinaN -- 2021-11-03 19:10
 imported redirect and made the welcome page's route "/loggedin". login info will no longer be shown in the URL in the welcome page. when logged out, user will be directed to the "/" route.
 
-tinaN, shyneC -- 2021-11-04\08:17
+tinaN, shyneC -- 2021-11-04 08:17
 design doc updated with database organization structure - combined table
 
-seanG, patrickG -- 2021-11-04\22:00
+seanG, patrickG -- 2021-11-04 22:00
 create class for database, which makes code much simpler, readable, and debuggable (if need be).
 
-shyneC -- 2021-11-05\08:40
+shyneC -- 2021-11-05 08:40
 added the error of different usernames
 
-ellaK -- 2021--11-06\21:55
+ellaK -- 2021--11-06 21:55
 - fixed link from login page to signup; now, you can successfully sign up and go to the response page
 - fixed login so that it goes to \login instead of \signup (mistake from classwork testing)
 - fixed signup so that confirming password works properly
 - made login successfully check for existing username+password combinations and only login if both are correct
 [long story short: login and signup are working now!!]
 
-seanG, patrickG --2021-11-07\13:42
+seanG, patrickG --2021-11-07 13:42
 - created BlogTable class which will be implemented in __init__.py. API intended to make database operations more readable, debuggable, and easier to implement.
 - BlogTable has entry number (rowid), username, blogText(content), and keywords.
 - added temporary folder for testing code, which shows that BlogTable class works, feel free to add more testing code into the folder. Will be deleted before project is submitted.
 - Right now will add title into blogTable constructor.
 
-shyneC -- 2021-11-07\15:57
+shyneC -- 2021-11-07 15:57
 - signup page has link to login
 - made a base/start for html template of making/viewing posts
 
-tinaN -- 2021-11-07\23:30
+tinaN -- 2021-11-07 23:30
 - added dropdown menu with topics to choose from to categorize a blog
 - added a title box in the /create page and changed the size of the text area to fit one line
 - added a link to go back to the home page in the /create page
 - started a /view in the Python file to view your own post after posting it and other's posts
 
-group -- 2021-11-08\08:00
+group -- 2021-11-08 08:00
 - worked on adding posts to database
 - changed input type for creating posts so that we can read in arguments
 - made code more readable by changing parameter and variable names
 
-seanG, patrickG -- 2021-11-08\21:41
+seanG, patrickG -- 2021-11-08 21:41
 - made minor changes to database.py, specifically adding printall function
 - fixed bug where searchbykeyword broke
 - implement a database functionality into /create
@@ -61,41 +61,39 @@ seanG, patrickG -- 2021-11-08\21:41
 - implement a database functionality into /create
 - added get and post functionality to /create
 
-tinaN -- 2021-11-08\23:10
+tinaN -- 2021-11-08 23:10
 - changed the sizes of the textboxes to fit their purpose (ex. blog textbox is larger than the title textbox)
 - created a new page for the user to go to after creating a post to view their posts along with other posts
 - added links to create another post and to go to the homepage in the new view page
 
-group -- 2021-11-09\08:00
+group -- 2021-11-09 08:00
 - fixed text area for creating posts
 - fixed view and render_template to display topic and content after creating a post
 
-seanG, patrickG --2021-11-09\19:42
+seanG, patrickG -- 2021-11-09 19:42
 - added endpoints /viewposts and /view/<int:id>, with some scrappy templates
 - made templates for those
 - /viewposts currently prints a hyperlink to every entry
 - /view/<int:id> will show a post with a particular rowid
 - **** /viewposts and /view/<int:id> are here to implement some code that will be used in their actual renditions. For example, _printall() is used which is a developmental function in our db. Just in case you were wondering for why it's used when it's a private function
 
-shyneC -- 2021-11-09\20:50
+shyneC -- 2021-11-09 20:50
 - added function of returning BlogTable as string in database
 - response.html now shows all posts made (layout is questionable but it shows up)
 
-ellaK -- 2021-11-09\20:56
+ellaK -- 2021-11-09 20:56
 - updated launch codes to have copy-pastable commands
 
-group -- 2021-11-10\08:00
+group -- 2021-11-10 08:00
 - fixed sign up crashing
 - updated formatting for creating and viewing posts
-
-Patrick and Sean Ging 2021/11/10 8:00
 - fixed bug where a user not logged in could access existing posts
 - setting up infrastructure for editing posts in both database and in the html and init.py
 
-Patrick and Sean Ging 11/11/2021 14:15
+seanG, patrickG -- 2021-11-11 14:15
 - added idExists() , updatePosts() , isAuthor() functionalities to BlogTable class
 - all functions in BlogTable that have id as an argument, with exception to idExists, will throw an error by us if id doesn't exist
-  so please please please use the idExists(). We're implementing this because when the errors get thrown because of Id not existing, it 
+  so please please please use the idExists(). We're implementing this because when the errors get thrown because of Id not existing, it
   gets rather messy when trying to find the source. So we added the assert statement to make it really debuggable.
 - Commented out endpoint /viewposts, perhaps planning on deleting it and posts.html because it's a developmental endpoint
 - fixed the canEdit in __init__.py so that it will respond to isAuthor()
@@ -105,6 +103,11 @@ Patrick and Sean Ging 11/11/2021 14:15
 shyneC -- 2021-11-11 16:55
 - response page now has a dropdown to select the topic that the user wants to explore blogs off
 - added viewselected.html (shows the posts of the specific topic selected from response page)
+
+ellaK -- 2021-11-11 17:30
+- created and added team flag
+- added an option to the response page to view all posts
+- cleaned up repo and deliverables (updated README and design doc, deleted unnecessary files/directories)
 
 tinaN -- 2021-11-11 18:00
 - added an edit page with prefilled blog content and title
