@@ -105,3 +105,6 @@ Patrick and Sean Ging 11/11/2021 14:15
 shyneC -- 2021-11-11 16:55
 - response page now has a dropdown to select the topic that the user wants to explore blogs off
 - added viewselected.html (shows the posts of the specific topic selected from response page)
+
+tinaN -- 2021-11-11 18:00
+- added an edit page with prefilled blog content and title
