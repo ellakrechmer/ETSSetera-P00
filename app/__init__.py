@@ -25,14 +25,23 @@ app.secret_key = os.urandom(32)
 userpass = UsernamePasswordTable(db_file, "userpass")
 blog = BlogTable(db_file, "blog")
 
-@app.route("/") #, methods=['GET', 'POST'])
+@app.route("/",  methods=["GET", "POST"])
 def disp_loginpage():
     if (session.get("username") is not None):
         # if there's an existing session, shows welcome page
-        data = blog.seeContent()
-        return render_template( 'response.html', username=session.get("username"), data = data)
+        if request.method == "GET":
+            # if there's an existing session, shows welcome page
+            return render_template( 'response.html', username=session.get("username") )
+        else:
+            topic = request.form['topic']
+            data = blog.seeContent()
+            return viewselected(topic, data)
     if ("username" != None):
         return render_template( 'login.html' )
+
+@app.route("/viewselected")
+def viewselected(topic, data):
+    return render_template('viewselected.html', topic=topic, data=data)
 
 
 @app.route("/login")
@@ -49,12 +58,12 @@ def login():
     else:
         session["username"] = username
         return redirect('/loggedin')
+
 @app.route("/signupdisplay")
 def disp_signuppage():
     if (session.get("username") is not None):
         # if there's an existing session, shows welcome page
-        data = blog.seeContent()
-        return render_template( 'response.html', username=session.get("username"), data = data)
+        return redirect ("/")
     if ("username" != None):
         return render_template( 'signup.html' )
 
@@ -68,7 +77,7 @@ def signup():
     elif not userpass.userExists(username):
         userpass.insert(username, password) # committing actions to database must be done every time you commit a command
         session["username"]=username
-        return redirect('/loggedin')
+        return redirect("/")
     elif (password!=passauth):
         return render_template('signup.html', passerror="Passwords must match")
     else:
@@ -76,11 +85,7 @@ def signup():
 
 @app.route("/loggedin")
 def loggedin(): # does not show info in URL, shows /loggedin instead
-
-    if session.get("username") is None:
-        return redirect("/")
-    data = blog.seeContent()
-    return render_template( 'response.html', username=session.get("username"), data = data)
+    return redirect("/")
 
 
 @app.route("/create", methods=["GET", "POST"])
@@ -113,12 +118,12 @@ def logout():
 
 
 '''@app.route("/viewposts")
-def posts():   
+def posts():
 
     if session.get("username") is None:
         return redirect("/")
 
-    return render_template("posts.html", matches=blog.seeContent()) 
+    return render_template("posts.html", matches=blog.seeContent())
 
 ''' # to be deleted developmental
 

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <!--
      ETSSetera: Shyne Choi, Ella Krechmer, Tina Nguyen, Sean+Patrick Ging
      SoftDev
@@ -23,19 +22,30 @@
   </h3>
 
   <body>
-    Welcome to ETSSetera blogs! Use the links below to create and view posts.
+    Welcome to ETSSetera blogs!
   </body>
-  <ul>
+    <br><br>
+  <form action="/" method = "POST">
+    <label for="topic">Choose the Topic You Would Like to See:</label>
+    <!-- lets you choose topic -->
+    <select name="topic" id="topic">
+      <option value="empty"> </option>
+      <option value="Teachers">Teachers</option>
+      <option value="School Policies">School Policies</option>
+      <option value="Rants">Rants</option>
+      <option value="Food">Food</option>
+      <option value="Senior Privileges">Senior Privileges and Senior "Privileges"</option>
+      <option value="What (Not) to Do">What (Not) to Do</option>
+      <option value="Navigating">Navigating the Building</option>
+      <option value="Clubs">Clubs and Activities</option>
+      <option value="Misc">Miscellaneous</option>
+      </select>
+      <input type="submit" value="See Posts">
+      <br>
+    </form>
+
     <br>
-    {% for row in data %}
-        <b> {{row[2]}} </b> -- <u>{{row[4]}}</u>
-        <br>
-        {{row[3]}}
-        <br>
-        <i> Written by {{row[1]}} </i>
-        <br><br>
-    {% endfor %}
-  </ul>
+
   <a href="{{ url_for('create') }}">Create Post</a>
   <br><br>
   <a href="{{ url_for('logout') }}">Log Out</a>
