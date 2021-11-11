@@ -1,8 +1,13 @@
 # ETSSetera-P00
-### Stuy Culture Blogs by ETSSetera-P00
-### Ella Krechmer, Shyne Choi, Sean Ging, Tina Nguyen
+### StuyBlogs by ETSSetera-P00
 
-Our project is a blog hosting site about Stuy culture. Users can write blogs about different topics at Stuy, like senior priveleges or basic what to do and what not to do.
+Ella Krechmer: Project Manager, Frontend Design/Component Management
+Shyne Choi: Frontend Design/Component Management
+Sean (and Patrick) Ging: Database Management, 
+Tina Nguyen: Frontend Design/Component Management
+
+#### Description
+Our project is a blog hosting site about Stuy culture. Users can sign up and write and view blogs about different topics at Stuy, like senior priveleges, school policies, navigating the building, and more.
 
 #### Launch Codes
 The following instructions assume that you have Python 3.9 and pip already installed.
