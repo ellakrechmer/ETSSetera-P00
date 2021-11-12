@@ -39,6 +39,7 @@
       <option value="Navigating">Navigating the Building</option>
       <option value="Clubs">Clubs and Activities</option>
       <option value="Misc">Miscellaneous</option>
+      <option value="Mine">See My Posts</option>
       <option value="All">See All Posts</option>
       </select>
       <input type="submit" value="See Posts">
@@ -46,6 +47,18 @@
     </form>
 
     <ul>
+    {% if topic == "Mine" %}
+      {% for row in data %}
+        {% if row[1] == username %}
+          <b> {{row[2]}} </b> -- <u>{{row[4]}}</u>
+          <br>
+          {{row[3]}}
+          <br>
+          <i> Written by {{row[1]}} </i>
+          <br><br>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
     {% for row in data %}
       {% if topic == row[4] %}
         <b> {{row[2]}} </b> -- <u>{{row[4]}}</u>
