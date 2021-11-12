@@ -88,7 +88,7 @@ def loggedin(): # does not show info in URL, shows /loggedin instead
     return redirect("/")
 
 
-@app.route("/create", methods=["GET", "POST"])
+@app.route("/create/", methods=["GET", "POST"])
 def create():
     if session.get("username") is None:
         return redirect("/")
@@ -108,7 +108,7 @@ def create():
 def edit(id):
     # temporary fix
     if not blog.idExists(id):
-        return redirect("/create", 401)
+        return redirect("/create/")
 
     elif not blog.isAuthor(session.get("username"), id):
         return redirect(f"/view/{id}")
@@ -155,7 +155,7 @@ def posts():
 @app.route("/view/<int:id>")
 def viewpost(id):
     if not blog.idExists(id):
-        return redirect("/create", 401)
+        return redirect("/create")
 
     if session.get("username") is None:
         return redirect("/")
