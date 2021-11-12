@@ -110,6 +110,8 @@ def edit(id):
     if not blog.idExists(id):
         return redirect("/create", 401)
 
+    elif not blog.isAuthor(session.get("username"), id):
+        return redirect(f"/view/{id}")
     elif request.method == "GET":
         data = blog.getEntryById(id)
         return editpost(data, id)
@@ -156,10 +158,11 @@ def viewpost(id):
         return redirect("/")
 
     blogContent = blog.getEntryById(id)
-    return render_template("viewpost.html", title=blogContent[2],
-                            content=blogContent[3],
-                            username=blogContent[1],
-                            keywords=blogContent[4],
+    return render_template("viewposts.html", title=blogContent[2],
+                            post=blogContent[3],
+                            #username=blogContent[1],
+                            topic=blogContent[4],
+                            id = blogContent[0],
                             canEdit=blog.isAuthor(session.get("username"), id)) #NOT FIXED NEED ERROR HANDLING TOOOO!!!!!
     # NEED TO FIX /VIEWPOSTS SO THAT IT DOESN'T CRASH IF THERE ARE NO POSTS!
 

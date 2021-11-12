@@ -61,7 +61,7 @@
     {% endif %}
     {% for row in data %}
       {% if topic == row[4] %}
-        <b> {{row[2]}} </b> -- <u>{{row[4]}}</u>
+        <a href="/view/{{row[0]}}"><b> {{row[2]}} </b></a> -- <u>{{row[4]}}</u>
         <br>
         {{row[3]}}
         <br>
