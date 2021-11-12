@@ -101,20 +101,35 @@ def create():
         title = request.form['title']
         post = request.form['postcontent']
         blog.insert(username, title, post, topic)
-        return view(topic, title, post)
 
-@app.route("/edit")
-def edit():
-    data = blog.seeContent()
-    return editpost(data)
-def editpost(data):
-    return render_template('edit.html', post = data[len(data)-1][3], title = data[len(data)-1][2], topic = data[len(data)-1][4])
+        return view(topic, title, post, blog.getNewestId())
+
+@app.route("/edit/<int:id>",  methods=["GET", "POST"])
+def edit(id):
+    # temporary fix
+    if not blog.idExists(id):
+        return redirect("/create", 401)
+
+    elif request.method == "GET":
+        data = blog.getEntryById(id)
+        return editpost(data, id)
+    else:
+        topic = request.form['topic']
+        title = request.form['title']
+        post = request.form['postcontent']
+        blog.updatePost(title, post, topic, id)
+
+        # need template for success!
+        return redirect("/loggedin")
+
+def editpost(data, id : int):
+    return render_template('edit.html', post = data[3], title = data[2], topic = data[4], id=id)
 #PREFILL TOPIC NOT WORKING :(
 
 @app.route("/view")
-def view(topic, title, post):
+def view(topic, title, post, id : int):
 ## where you can view the blogs
-    return render_template('view.html', username=session.get("username"), title=title, post=post, topic=topic)
+    return render_template('view.html', username=session.get("username"), title=title, post=post, topic=topic, id=id)
 
 
 @app.route("/logout")

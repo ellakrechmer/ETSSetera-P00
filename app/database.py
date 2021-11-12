@@ -279,6 +279,7 @@ class BlogTable:
 		self._cursor.execute(f"UPDATE {self._name} SET title = \"{title}\", blog = \"{postContent}\", topic = \"{keyWords}\" WHERE rowid = {id};")
 		self._db.commit()
 
+
 	def idExists(self, id : int):
 			'''
                 idExist()
@@ -294,3 +295,11 @@ class BlogTable:
 			self._cursor.execute(f"SELECT rowid, * from {self._name} WHERE rowid={id} LIMIT 1;")
 			data = self._cursor.fetchone()
 			return data is not None
+
+	def getNewestId(self):
+		'''
+			getNewestId()
+
+			will return the newest entry via returning the highest rowid
+		'''
+		return self._cursor.lastrowid
