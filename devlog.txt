@@ -120,4 +120,3 @@ these are the functionalities we added:
 - option to edit a post from the view IFF you are the author
 - error handling
 - fixed duplication with editing
-- 
