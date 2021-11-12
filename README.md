@@ -2,9 +2,13 @@
 ### StuyBlogs by ETSSetera-P00
 
 Ella Krechmer: Project Manager, Frontend Design/Component Management
+
 Shyne Choi: Frontend Design/Component Management
-Sean (and Patrick) Ging: Database Management, 
+
+Sean (and Patrick) Ging: Database Management
+
 Tina Nguyen: Frontend Design/Component Management
+
 
 #### Description
 Our project is a blog hosting site about Stuy culture. Users can sign up and write and view blogs about different topics at Stuy, like senior priveleges, school policies, navigating the building, and more.
