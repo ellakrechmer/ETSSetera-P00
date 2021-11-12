@@ -118,5 +118,5 @@ these are the functionalities we added:
 - view your own posts from the drop down in the home page
 - press the title of a post and view it
 - option to edit a post from the view IFF you are the author
-- error handling
+- error handling with post creation to make sure nothing is empty
 - fixed duplication with editing

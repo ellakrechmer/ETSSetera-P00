@@ -88,7 +88,7 @@ def loggedin(): # does not show info in URL, shows /loggedin instead
     return redirect("/")
 
 
-@app.route("/create/", methods=["GET", "POST"])
+@app.route("/create", methods=["GET", "POST"])
 def create():
     if session.get("username") is None:
         return redirect("/")
@@ -100,15 +100,18 @@ def create():
         username = session.get("username")
         title = request.form['title']
         post = request.form['postcontent']
-        blog.insert(username, title, post, topic)
 
-        return view(topic, title, post, blog.getNewestId())
+        if topic=="empty" or title=="" or post=="":
+            return render_template('create.html', error="Must have a topic, title, and content")
+        else:
+            blog.insert(username, title, post, topic)
+            return view(topic, title, post, blog.getNewestId())
 
 @app.route("/edit/<int:id>",  methods=["GET", "POST"])
 def edit(id):
     # temporary fix
     if not blog.idExists(id):
-        return redirect("/create/")
+        return redirect("/")
 
     elif not blog.isAuthor(session.get("username"), id):
         return redirect(f"/view/{id}")
@@ -119,6 +122,8 @@ def edit(id):
         topic = request.form['topic']
         title = request.form['title']
         post = request.form['postcontent']
+        if topic=="empty" or title=="" or post=="":
+            return render_template('edit.html', error="Must have a topic, title, and content")
         blog.updatePost(title, post, topic, id)
 
         # need template for success!
@@ -155,7 +160,7 @@ def posts():
 @app.route("/view/<int:id>")
 def viewpost(id):
     if not blog.idExists(id):
-        return redirect("/create")
+        return redirect("/")
 
     if session.get("username") is None:
         return redirect("/")

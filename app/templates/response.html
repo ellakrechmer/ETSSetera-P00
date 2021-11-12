@@ -46,6 +46,10 @@
       <br>
     </form>
 
+    {% if topic== "empty" %}
+      <p style="color:red">Please pick a topic</p>
+    {% endif %}
+    
     <ul>
     {% if topic == "Mine" %}
       {% for row in data %}
@@ -72,7 +76,7 @@
     {% endif %}
 
     {% for row in data %}
-      {% if topic == row[4] %}
+      {% if topic == row[4] and topic!= "empty"%}
           <a href="/view/{{row[0]}}"><b> {{row[2]}} </b></a> -- <u>{{row[4]}}</u>
           <br>
           {{row[3]}}

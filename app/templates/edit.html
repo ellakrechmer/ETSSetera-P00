@@ -31,11 +31,12 @@
   <body>
     Type your blog below! Remember to title your blog and to put it in a category.
   </body>
-  <br><br>
+  <br>
 
 
 
   <form action="/edit/{{ id }}" method = "POST">
+    <p style="color:red"> {{error}}</p>
     <label for="topic">Topic:</label>
     <!-- lets you choose topic -->
     <select name="topic" value="{{ topic }}"  id="topic">
