@@ -59,16 +59,8 @@
         {% endif %}
       {% endfor %}
     {% endif %}
-    {% for row in data %}
-      {% if topic == row[4] %}
-        <b> {{row[2]}} </b> -- <u>{{row[4]}}</u>
-        <br>
-        {{row[3]}}
-        <br>
-        <i> Written by {{row[1]}} </i>
-        <br><br>
-      {% endif %}
-      {% if topic == "All"%}
+
+    {% if topic == "All"%}
       <br>
       {% for row in data %}
           <b> {{row[2]}} </b> -- <u>{{row[4]}}</u>
@@ -78,6 +70,16 @@
           <i> Written by {{row[1]}} </i>
           <br><br>
       {% endfor %}
+    {% endif %}
+
+    {% for row in data %}
+      {% if topic == row[4] %}
+          <b> {{row[2]}} </b> -- <u>{{row[4]}}</u>
+          <br>
+          {{row[3]}}
+          <br>
+          <i> Written by {{row[1]}} </i>
+          <br><br>
       {% endif %}
     {% endfor %}
   </ul>
