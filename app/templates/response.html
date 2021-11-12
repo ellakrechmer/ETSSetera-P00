@@ -50,7 +50,7 @@
     {% if topic == "Mine" %}
       {% for row in data %}
         {% if row[1] == username %}
-          <b> {{row[2]}} </b> -- <u>{{row[4]}}</u>
+          <a href="/view/{{row[0]}}"><b> {{row[2]}} </b></a> -- <u>{{row[4]}}</u>
           <br>
           {{row[3]}}
           <br>
@@ -63,7 +63,7 @@
     {% if topic == "All"%}
       <br>
       {% for row in data %}
-          <b> {{row[2]}} </b> -- <u>{{row[4]}}</u>
+          <a href="/view/{{row[0]}}"><b> {{row[2]}} </b></a> -- <u>{{row[4]}}</u>
           <br>
           {{row[3]}}
           <br>
@@ -74,7 +74,7 @@
 
     {% for row in data %}
       {% if topic == row[4] %}
-          <b> {{row[2]}} </b> -- <u>{{row[4]}}</u>
+          <a href="/view/{{row[0]}}"><b> {{row[2]}} </b></a> -- <u>{{row[4]}}</u>
           <br>
           {{row[3]}}
           <br>
