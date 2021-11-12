@@ -154,6 +154,9 @@ def posts():
 
 @app.route("/view/<int:id>")
 def viewpost(id):
+    if not blog.idExists(id):
+        return redirect("/create", 401)
+
     if session.get("username") is None:
         return redirect("/")
 

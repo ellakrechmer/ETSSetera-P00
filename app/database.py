@@ -152,7 +152,7 @@ class BlogTable:
 		self._db = sqlite3.connect(fileName, check_same_thread=False)
 		self._cursor = self._db.cursor()
 		self._name = name
-		self._cursor.execute(f"CREATE TABLE IF NOT EXISTS {self._name} ( username TEXT, title TEXT NOT NULL,  blog TEXT NOT NULL, topic TEXT NOT NULL) ;")
+		self._cursor.execute(f"CREATE TABLE IF NOT EXISTS {self._name} ( username TEXT, title TEXT NOT NULL,  blog TEXT NOT NULL, topic TEXT NOT NULL ;")
 
 	def insert(self, username, title,  blog, topic):
 		'''
