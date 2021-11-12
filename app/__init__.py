@@ -122,7 +122,7 @@ def edit(id):
         blog.updatePost(title, post, topic, id)
 
         # need template for success!
-        return redirect("/loggedin")
+        return redirect(f"/view/{id}")
 
 def editpost(data, id : int):
     return render_template('edit.html', post = data[3], title = data[2], topic = data[4], id=id)

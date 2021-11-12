@@ -111,3 +111,13 @@ ellaK -- 2021-11-11 17:30
 
 tinaN -- 2021-11-11 18:00
 - added an edit page with prefilled blog content and title
+
+group -- 2021-11-11 21:00
+- got on a Zoom call to finish work
+these are the functionalities we added:
+- view your own posts from the drop down in the home page
+- press the title of a post and view it
+- option to edit a post from the view IFF you are the author
+- error handling
+- fixed duplication with editing
+- 
