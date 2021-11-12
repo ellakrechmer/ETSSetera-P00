@@ -49,7 +49,7 @@
     {% if topic== "empty" %}
       <p style="color:red">Please pick a topic</p>
     {% endif %}
-    
+
     <ul>
     {% if topic == "Mine" %}
       {% for row in data %}
@@ -66,12 +66,14 @@
 
     {% if topic == "All"%}
       {% for row in data %}
+        {% if row[4]!="empty" %}
           <a href="/view/{{row[0]}}"><b> {{row[2]}} </b></a> -- <u>{{row[4]}}</u>
           <br>
           {{row[3]}}
           <br>
           <i> Written by {{row[1]}} </i>
           <br><br>
+        {% endif %}
       {% endfor %}
     {% endif %}
 
